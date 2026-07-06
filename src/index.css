@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import 'leaflet/dist/leaflet.css';
+@import "tailwindcss";
+
+
+@layer base {
+  :root {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+}
+
+@layer utilities {
+  /* Beautiful custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Leaflet Map Overrides ──────────────────────────────────────────────── */
+
+/* Popup wrapper */
+.leaflet-popup-content-wrapper {
+  background: #fff;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.10) !important;
+  padding: 0 !important;
+  border: 1px solid #e2e8f0;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.leaflet-popup-tip {
+  background: #fff !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  font-size: 16px !important;
+  top: 6px !important;
+  right: 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #475569 !important;
+}
+
+/* Control buttons */
+.leaflet-control-zoom a {
+  font-family: var(--font-sans) !important;
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Scale bar */
+.leaflet-control-scale-line {
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  border-color: #94a3b8 !important;
+  color: #64748b !important;
+}
+
+/* Fix z-index clashes with Tailwind sticky headers */
+.leaflet-pane { z-index: 4 !important; }
+.leaflet-tile-pane { z-index: 2 !important; }
+.leaflet-overlay-pane { z-index: 4 !important; }
+.leaflet-marker-pane { z-index: 6 !important; }
+.leaflet-tooltip-pane { z-index: 7 !important; }
+.leaflet-popup-pane { z-index: 8 !important; }
+.leaflet-control { z-index: 9 !important; }
+
+/* Pulsing bus marker animation (also defined inline in DivIcon for non-CSS cascade) */
+@keyframes lbsPing {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  70%  { transform: scale(1.45); opacity: 0; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
